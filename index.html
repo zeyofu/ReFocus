@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="ReFocus: Visual Editing as a Chain of Thought for Structured Image Understanding">
+
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Multimodal Reasoning, Vision and Language Reasoning, Vision Language Model, LLM, VLM, Visual Chain of Thought, Visual Prompting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>ReFocus</title>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-MFCT45H');</script>
+  <!-- End Google Tag Manager -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/dataTables.bulma.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFCT45H" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://zeyofu.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://zeyofu.github.io/blink/">
+            BLINK
+          </a>
+          <a class="navbar-item" href="https://visualsketchpad.github.io/">
+            Visual Sketchpad
+          </a>
+          <a class="navbar-item" href="https://muirbench.github.io/">
+            MuirBench
+          </a>
+          <a class="navbar-item" href="https://zeyofu.github.io/CommonsenseT2I/">
+            Commonsense-T2I
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </nav>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://yushi-hu.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://finegrainedrlhf.github.io/">
+            Fine-Grained RLHF (NeurIPS 2023)
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title"><img src="static/images/icon.png" width="50" /><font color="#96482c"> ReFocus</font>: Visual Editing as a Chain of Thought for Structured Image Understanding</h2>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+                <span class="author-block">
+                  <a href="https://zeyofu.github.io/" target="_blank"><font color="#B082C9"><b>Xingyu Fu</b></font></a><sup>1</sup>&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://mqianliu.github.io/" target="_blank"><font color="#B082C9"><b>Minqian Liu</b></font></a><sup>2</sup>&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://zyang-ur.github.io/" target="_blank"><font color="#B082C9"><b>Zhengyuan Yang</b></font></a><sup>3</sup>&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://www.microsoft.com/en-us/research/people/jocorrin/" target="_blank"><font color="#B082C9"><b>John Corring</b></font></a><sup>3</sup>&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=cpkrT44AAAAJ&hl=en" target="_blank"><font color="#B082C9"><b>Yijuan Lu</b></font></a><sup>3</sup>&emsp;
+                </span>
+                <br>
+                <span class="author-block">
+                  <a href="https://jwyang.github.io/" target="_blank"><font color="#B082C9"><b>Jianwei Yang</b></font></a><sup>3</sup>&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://www.cis.upenn.edu/~danroth/" target="_blank"><font color="#B082C9"><b>Dan Roth</b></font></a><sup>1</sup>&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://www.microsoft.com/en-us/research/people/dinei/" target="_blank"><font color="#B082C9"><b>Dinei Florencio</b></font></a><sup>3</sup>&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://www.microsoft.com/en-us/research/people/chazhang/" target="_blank"><font color="#B082C9"><b>Cha Zhang</b></font></a><sup>3</sup>&emsp;
+                </span>
+                </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">
+                      <sup>1</sup>University of Pensylvania&emsp;
+                      <sup>2</sup>Virginia Tech&emsp;
+                      <sup>3</sup>Microsoft&emsp; <br>
+                      <!-- <sup>*</sup>Equal Contribution&emsp;
+                      <sup>†</sup>Equal Advising -->
+                    </span>
+                    <!-- <span class="author-block">
+                      <h1 class="title is-4"><font color="#B03A2E"><b>ECCV 2024</b></font></h1>
+                    </span> -->
+                  </div>
+
+                  <div class="content has-text-centered">
+                    <div class="publication-links">
+                      <span class="link-block">
+                        <a href="https://arxiv.org/abs/2404.12390.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <span class="link-block">
+                      <a href="https://github.com/zeyofu/BLINK_Benchmark" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                    </span>
+  
+                    <span class="link-block">
+                      <a href="https://huggingface.co/datasets/BLINK-Benchmark/BLINK" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fa fa-database"></i>
+                      </span>
+                      <span>Training Dataset</span>
+                    </a>
+                  </span>
+
+                <span class="link-block">
+                  <a href="https://eval.ai/web/challenges/challenge-page/2287/overview" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa fa-link"></i>
+                  </span>
+                  <span>Model Checkpoint</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://twitter.com/XingyuFu2/status/1781368539213082683" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
+                  </a>
+                </span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser image-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">What is ReFocus?</h2>
+      <h2 class="subtitle has-text-justified">
+        <span style="font-weight:bold;">ReFocus </span> performs visual chain of thought via input-image editing to help multimodal reasoning.</h2>
+      <img src="static/images/teaser.png" height="100%"/>
+      <h2 class="subtitle has-text-justified">
+        Given an example Table VQA data, <span style="font-weight:bold;">ReFocus </span> equips GPT-4 with editing tools and GPT-4 generates pseudo code if an edit action is needed. <span style="font-weight:bold;">ReFocus </span> then executes the editing actions, and feeds GPT-4 with the new image until an answer is reached. In the above example, some columns are masked and certain rows are boxed.</h2>
+        <h2 class="subtitle has-text-justified">
+          Further, we collect a training dataset for such refocus reasoning processes and release the model.</h2>
+      <!-- <h2 class="subtitle has-text-centered">Example tasks in <span style="font-weight:bold;">ReFocus</span>.</h2> -->
+      <!-- <h2 class="hero-body has-text-centered">
+        <br>
+        Example tasks in <span style="font-weight:bold;">ReFocus</span>. The answers of the examples: relative depth: B; jigsaw: A; multi-view reasoning: right; visual correspondence: A; semantic correspondence: C; forensics detection: final image; IQ test: D; visual similarity: upper one; functional correspondence: A; relative reflectance: they are about the same.
+      </h2> -->
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+
+<!-- Teaser video-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <source src="static/videos/banner_video.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Brief video introduction about <span style="font-weight:bold;">ReFocus Benchmark.</span>. 
+      </h2>
+    </div>
+  </div>
+</section> -->
+<!-- End teaser video -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Structured image understanding, such as interpreting tables and charts, requires strategically refocusing across various structures and texts within an image, forming a reasoning sequence to arrive at the final answer. However, current multimodal large language models (LLMs) lack this multihop selective attention capability. In this work, we introduce <b>ReFocus</b>, a simple yet effective framework that equips multimodal LLMs with the ability to generate ``visual thoughts'' by performing visual editing on the input image through code, shifting and refining their visual focuses. Specifically, <b>ReFocus</b> enables multimodal LLMs to generate Python codes to call tools and modify the input image, sequentially drawing boxes, highlighting sections, and masking out areas, thereby enhancing the visual reasoning process. We experiment upon a wide range of structured image understanding tasks involving tables and charts. <b>ReFocus</b> largely improves performance on all tasks over GPT-4o without visual editing, yielding an average gain of 11.0% on table tasks and 6.8% on chart tasks. We present an in-depth analysis of the effects of different visual edits, and reasons why <b>ReFocus</b> can improve the performance without introducing additional information. Further, we collect a 14k training set using <b>ReFocus</b>, and prove that such visual chain-of-thought with intermediate information offers a better supervision than standard VQA pairs, reaching consistent gain over the same model trained with QA data.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<!-- Paper Qualitative -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">More Examples</h2>
+        <img src="static/images/chartQA.png" width="100%"/>
+        <img src="static/images/chartQA_v_bar.png" width="100%"/>
+        <img src="static/images/charxiv.png" width="100%"/>
+        <img src="static/images/ocr_analysis.png" width="100%"/>
+        <h2 class="content has-text-centered">
+          Notice that the left side images are original inputs, and right side ones are edited images by <b>ReFocus</b>. 
+        </h2>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper Qualitative -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <img src="static/images/table1.png" height="90%"/>
+        <h2 class="content has-text-justified">
+          <b>ReFocus</b> substantially improves performance on almost all tasks over GPT-4-turbo and GPT-4o without refocusing, setting a new state of the art on chart and table tasks.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper Analysis -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Finetune with <b>ReFocus</b></h2> <br>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-five-sixths">
+        <h2 class="content has-text-justified">
+        1. We collect a training dataset using <b>ReFocus</b> upon ChartQA, and release the data. <br>
+        </h2>
+        <div class="columns is-centered has-text-centered">
+        <img src="static/images/finetune.png" width="90%"/> </div>
+        <h2 class="content has-text-justified">
+        2. We finetune <a href="https://huggingface.co/microsoft/Phi-3.5-vision-instruct">Phi-3.5-vision</a> with the collected dataset and release the model. <br>
+        3. Our finetuned model sets the new standard, outperforming the same base model finetuned with QA data or textual chain-of-thought (CoT) data. <br>
+        </h2>
+        <!-- <div class="columns is-centered has-text-centered">
+        <img src="static/images/finetune_results.png" width="80%"/> </div>
+        <div class="columns is-centered has-text-centered">
+        <img src="static/images/table5.png" width="70%"/> </div> -->
+        
+        <div class="myrow">
+          <div class="mycolumn">
+            <img src="static/images/finetune_results.png" style="width:100%">
+          </div>
+          <div class="mycolumn">
+            <img src="static/images/table5.png" style="width:70%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper Qualitative -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Finetuned Model Output Examples</h2>
+        <img src="static/images/finetune_show.png" width="100%"/>        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><bibtexcode>
+        @article{fu2024blink,
+          title={BLINK: Multimodal Large Language Models Can See but Not Perceive},
+          author={Fu, Xingyu and Hu, Yushi and Li, Bangzheng and Feng, Yu and Wang, Haoyu and Lin, Xudong and Roth, Dan and Smith, Noah A and Ma, Wei-Chiu and Krishna, Ranjay},
+          journal={arXiv preprint arXiv:2404.12390},
+          year={2024}
+        }
+      </bibtexcode></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script src="./static/js/jquery.csv.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bulma.min.js"></script>
+    <script src="./static/js/csv_to_html_table.js"></script>
+    <script>
+      CsvToHtmlTable.init({
+        csv_path: 'static/val_result.csv', 
+        element: 'table-container', 
+        allow_download: true,
+        csv_options: {separator: ',', delimiter: '"'},
+        datatables_options: {
+          "paging": false, 
+          "order": [[1, 'desc']],
+          "columnDefs": [
+          {targets: [0], className: 'dt-left', className: 'dt-head-left'},
+          ]
+        }
+      });
+    </script>
+  
+  </body>
+  </html>
